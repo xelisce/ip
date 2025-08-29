@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class TaskManager {
     public static Task[] taskList = new Task[100];
     public static int taskListSize = 0;
@@ -21,9 +19,9 @@ public class TaskManager {
         Display.printMessage(taskDescriptions);
     }
 
-    public static void markTask(boolean done, int index) {
+    public static void markTask(boolean markDone, int index) {
         Task task =  taskList[index];
-        task.setIsDone(done);
+        task.setIsDone(markDone);
         Display.printMessage("Nice! I've marked this task as done",
                 "   " + task.getStatusLine());
     }
