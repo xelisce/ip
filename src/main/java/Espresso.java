@@ -15,13 +15,24 @@ public class Espresso {
     }
 
     public static void action(String userInput) {
-        switch (userInput) {
-            case "list":
-                TaskManager.printTasks();
-                break;
-            default:
-                TaskManager.addTask(userInput);
-                break;
+        String[] dividerIndex = userInput.split(" ");
+        String command = dividerIndex[0];
+        int taskIndex;
+        switch (command) {
+        case "list":
+            TaskManager.printTasks();
+            break;
+        case "mark":
+            taskIndex = Integer.parseInt(dividerIndex[1]);
+            TaskManager.markTask(taskIndex - 1);
+            break;
+        case "unmark":
+            taskIndex = Integer.parseInt(dividerIndex[1]);
+            TaskManager.unmarkTask(taskIndex - 1);
+            break;
+        default:
+            TaskManager.addTask(userInput);
+            break;
         }
     }
 
