@@ -15,12 +15,12 @@ public class Display {
         System.out.println("\n" + LOGO);
     }
 
-    public static void hello() {
+    public static void printHelloMessage() {
         printBanner();
         printMessage("Hello! I'm ESPRESSO", "What can I do for you today?");
     }
 
-    public static void bye() {
+    public static void printByeMessage() {
         printMessage("Bye. Hope to see you again soon!");
     }
 

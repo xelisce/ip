@@ -4,28 +4,17 @@ public class ActionManager {
 
     public static void mainLoop() {
         Scanner in = new Scanner(System.in);
-        String userInput = in.nextLine();
-        while (!userInput.equals("bye")) {
-            getAction(userInput);
+        String userInput; // how do i get rid of this line
+        while (true) {
             userInput = in.nextLine();
+            if (userInput.equals("bye")) {
+                return;
+            }
+            doAction(userInput);
         }
     }
 
-    public static void getAction(String userInput) {
-        String[] dividerIndex = userInput.split(" ");
-        String command = dividerIndex[0];
-        switch (command) {
-        case "list":
-            TaskManager.printTasks();
-            break;
-        case "mark":
-        case "unmark":
-            int taskIndex = Integer.parseInt(dividerIndex[1]);
-            TaskManager.markTask(command.equals("mark"), taskIndex - 1);
-            break;
-        default:
-            TaskManager.addTask(userInput);
-            break;
-        }
+    public static void doAction(String userInput) {
+        Parser.parseInput(userInput);
     }
 }

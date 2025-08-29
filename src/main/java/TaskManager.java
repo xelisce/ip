@@ -20,7 +20,7 @@ public class TaskManager {
     }
 
     public static void markTask(boolean markDone, int index) {
-        Task task =  taskList[index];
+        Task task = taskList[index];
         task.setIsDone(markDone);
         Display.printMessage("Nice! I've marked this task as done",
                 "   " + task.getStatusLine());

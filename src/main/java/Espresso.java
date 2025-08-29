@@ -1,8 +1,8 @@
 public class Espresso {
 
     public static void main(String[] args) {
-        Display.hello();
+        Display.printHelloMessage();
         ActionManager.mainLoop();
-        Display.bye();
+        Display.printByeMessage();
     }
 }
