@@ -16,20 +16,15 @@ public class TaskManager {
         Task currentTask;
         for (int i = 0; i < taskListSize; i++) {
             currentTask = taskList[i];
-            taskDescriptions[i] = (i + 1) + ". [" + currentTask.getStatusIcon() + "] " + currentTask.getDescription();
+            taskDescriptions[i] = (i + 1) + ". "  + currentTask.getStatusLine();
         }
         Display.printMessage(taskDescriptions);
     }
 
-    public static void markTask(int index) {
-        taskList[index].setIsDone(true);
+    public static void markTask(boolean done, int index) {
+        Task task =  taskList[index];
+        task.setIsDone(done);
         Display.printMessage("Nice! I've marked this task as done",
-                "   [X] " + taskList[index].getDescription());
-    }
-
-    public static void unmarkTask(int index) {
-        taskList[index].setIsDone(false);
-        Display.printMessage("OK, I've marked this task as not done yet:",
-                "   [ ] " + taskList[index].getDescription());
+                "   " + task.getStatusLine());
     }
 }
