@@ -11,9 +11,9 @@ public class Display {
             '·:...................................................................:·'
             """;
 
-    public static void print(String... messages) {
+    public static void printMessage(String... message) {
         System.out.println(Display.DIVIDER);
-        for (String s : messages) {
+        for (String s : message) {
             System.out.println("\t" + s);
         }
         System.out.println(Display.DIVIDER);

@@ -7,15 +7,22 @@ public class Espresso {
     }
 
     private static void greeting() {
-        Display.print("Hello! I'm ESPRESSO", "What can I do for you today?");
+        Display.printMessage("Hello! I'm ESPRESSO", "What can I do for you today?");
     }
 
     private static void bye() {
-        Display.print("Bye. Hope to see you again soon!");
+        Display.printMessage("Bye. Hope to see you again soon!");
     }
 
     public static void action(String userInput) {
-        Display.print(userInput);
+        switch (userInput) {
+            case "list":
+                TaskManager.printTasks();
+                break;
+            default:
+                TaskManager.addTask(userInput);
+                break;
+        }
     }
 
     public static void main(String[] args) {
