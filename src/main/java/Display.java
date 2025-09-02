@@ -24,6 +24,12 @@ public class Display {
         printMessage("Bye. Hope to see you again soon!");
     }
 
+    public static void printInvalidCommand() {
+        printMessage("Invalid command",
+                "Please use todo, deadline or event to add a task",
+                "Example: todo borrow book");
+    }
+
     public static void printMessage(String... message) {
         System.out.println(DIVIDER);
         for (String s : message) {

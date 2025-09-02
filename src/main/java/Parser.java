@@ -1,31 +1,76 @@
+import java.util.Arrays;
+
 public class Parser {
 
-    public static void parseInput(String userInput) {
-        String[] dividerIndex = userInput.split(" ");
-        String command = dividerIndex[0];
-        if (!validateInput(command, userInput)) {
-            return;
+    public static Command parseInput(String userInput) {
+        int spaceIndex = userInput.indexOf(" ");
+        String[] arguments = userInput.split(" ");
+        String keyword = arguments[0];
+        String remainder = "";
+
+        if (arguments.length > 1) {
+            remainder = userInput.substring(spaceIndex + 1);
         }
 
-        switch (command) {
+        switch (keyword) {
         case "list":
-            TaskManager.printTasks();
-            break;
+            return new Command(CommandType.LIST, remainder);
         case "mark":
+            return parseMarkCommand(CommandType.MARK, remainder);
         case "unmark":
-            int taskIndex = Integer.parseInt(dividerIndex[1]);
-            boolean toMarkDone = command.equals("mark");
-            TaskManager.markTask(toMarkDone, taskIndex - 1);
-            break;
+            return parseMarkCommand(CommandType.UNMARK, remainder);
+        case "todo":
+            return new Command(CommandType.TODO, remainder);
+        case "deadline":
+            return parseDeadlineCommand(remainder);
+        case "event":
+            return parseEventCommand(remainder);
         default:
-            TaskManager.addTask(userInput);
-            break;
+            return new Command(CommandType.INVALID, userInput);
         }
-
     }
 
-    public static boolean validateInput(String command, String userInput) {
-        //TODO
-        return true;
+    private static Command parseMarkCommand(CommandType type, String remainder) {
+        int index;
+        try {
+            index = Integer.parseInt(remainder.trim());
+        } catch (NumberFormatException e) {
+            return new Command(CommandType.INVALID, remainder);
+        }
+
+        Command cmd = new Command(type, "");
+        cmd.setTaskIndex(index - 1);
+        return cmd;
+    }
+
+    private static Command parseDeadlineCommand(String remainder) {
+        int byIndex = remainder.indexOf("/by");
+        if (byIndex == -1) {
+            return new Command(CommandType.INVALID, remainder);
+        }
+
+        String description = remainder.substring(0, byIndex).trim();
+        String deadline = remainder.substring(byIndex + 4).trim();
+
+        Command cmd = new Command(CommandType.DEADLINE, description);
+        cmd.setDeadline(deadline);
+        return cmd;
+    }
+
+    private static Command parseEventCommand(String remainder) {
+        int fromIndex = remainder.indexOf("/from");
+        int toIndex = remainder.indexOf("/to");
+        if (fromIndex == -1 || toIndex == -1) {
+            return new Command(CommandType.INVALID, remainder);
+        }
+
+        String description = remainder.substring(0, fromIndex).trim();
+        String from = remainder.substring(fromIndex + 6, toIndex).trim();
+        String to = remainder.substring(toIndex +4);
+
+        Command cmd = new Command(CommandType.EVENT, description);
+        cmd.setEventStart(from);
+        cmd.setEventEnd(to);
+        return cmd;
     }
 }

@@ -2,11 +2,12 @@ public class TaskManager {
     public static Task[] taskList = new Task[100];
     public static int taskListSize = 0;
 
-    public static void addTask(String description) {
-        Task t = new Task(description);
+    public static void addTask(Task t) {
         taskList[taskListSize] = t;
         taskListSize++;
-        Display.printMessage("Added task: " + description);
+        Display.printMessage("Got it. I've added this task:",
+                "   " + t.getStatusLine(),
+                "Now you have " + taskListSize + " tasks in the list.");
     }
 
     public static void printTasks() {
@@ -22,7 +23,23 @@ public class TaskManager {
     public static void markTask(boolean markDone, int index) {
         Task task = taskList[index];
         task.setIsDone(markDone);
-        Display.printMessage("Nice! I've marked this task as done",
+        String done = markDone ? "done" : "undone";
+        Display.printMessage("Nice! I've marked this task as " + done,
                 "   " + task.getStatusLine());
+    }
+
+    public static void addTodo(String description) {
+        Todo task = new Todo(description);
+        addTask(task);
+    }
+
+    public static void addDeadline(String description, String deadline) {
+        Deadline task = new Deadline(description, deadline);
+        addTask(task);
+    }
+
+    public static void addEvent(String description, String start, String end) {
+        Event task = new Event(description, start, end);
+        addTask(task);
     }
 }
