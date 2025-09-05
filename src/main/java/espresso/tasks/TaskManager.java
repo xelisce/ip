@@ -1,3 +1,7 @@
+package espresso.tasks;
+
+import espresso.ui.Display;
+
 public class TaskManager {
     public static Task[] taskList = new Task[100];
     public static int taskListSize = 0;

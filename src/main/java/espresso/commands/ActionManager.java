@@ -1,4 +1,10 @@
+package espresso.commands;
+
 import java.util.Scanner;
+
+import espresso.ui.Display;
+import espresso.inputchecker.Parser;
+import espresso.tasks.TaskManager;
 
 public class ActionManager {
 

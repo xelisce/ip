@@ -1,3 +1,5 @@
+package espresso.inputchecker;
+
 public class Messages {
     static String INVALID_EVENT_FROM = "Your /from parameter is empty. Please add something behind the parameter /from";
     static String INVALID_EVENT_MISSING_FROM_PARAMETER = "Your /from parameter is missing. Please add the parameter /from";
