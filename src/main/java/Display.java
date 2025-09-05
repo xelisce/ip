@@ -24,10 +24,11 @@ public class Display {
         printMessage("Bye. Hope to see you again soon!");
     }
 
-    public static void printInvalidCommand() {
+    public static void printInvalidCommand(String specificErrorMessage) {
         printMessage("Invalid command",
                 "Please use todo, deadline or event to add a task",
-                "Example: todo borrow book");
+                "Example: todo borrow book",
+                specificErrorMessage);
     }
 
     public static void printMessage(String... message) {

@@ -38,7 +38,7 @@ public class ActionManager {
             break;
         case INVALID:
         default:
-            Display.printInvalidCommand();
+            Display.printInvalidCommand(command.getDescription());
             break;
         }
     }

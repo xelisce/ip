@@ -60,13 +60,15 @@ public class Parser {
     private static Command parseEventCommand(String remainder) {
         int fromIndex = remainder.indexOf("/from");
         int toIndex = remainder.indexOf("/to");
-        if (fromIndex == -1 || toIndex == -1) {
-            return new Command(CommandType.INVALID, remainder);
+
+        Command invalidCommand = Validator.validateEventIndexes(fromIndex, toIndex, remainder);
+        if (invalidCommand.getType() == CommandType.INVALID) {
+            return invalidCommand;
         }
 
         String description = remainder.substring(0, fromIndex).trim();
         String from = remainder.substring(fromIndex + 6, toIndex).trim();
-        String to = remainder.substring(toIndex +4);
+        String to = remainder.substring(toIndex + 4);
 
         Command cmd = new Command(CommandType.EVENT, description);
         cmd.setEventStart(from);
