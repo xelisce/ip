@@ -52,11 +52,7 @@ public class Command {
         this.eventEnd = end;
     }
 
-    public void setIsValidArguments(boolean isValidArguments) {
-        this.isValidArguments = isValidArguments;
-    }
-
-    public boolean getIsValidArguments() {
-        return isValidArguments;
+    public boolean isInvalid() {
+        return this.getType() == CommandType.INVALID;
     }
 }

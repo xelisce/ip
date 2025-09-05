@@ -1,3 +1,4 @@
+import java.lang.classfile.attribute.LocalVariableInfo;
 import java.util.Arrays;
 
 public class Parser {
@@ -20,23 +21,30 @@ public class Parser {
         case "unmark":
             return parseMarkCommand(CommandType.UNMARK, remainder);
         case "todo":
-            return new Command(CommandType.TODO, remainder);
+            return parseTodoCommand(remainder);
         case "deadline":
             return parseDeadlineCommand(remainder);
         case "event":
             return parseEventCommand(remainder);
         default:
-            return new Command(CommandType.INVALID, userInput);
+            return new Command(CommandType.INVALID, Messages.INVALID_KEYWORD);
         }
     }
 
-    private static Command parseMarkCommand(CommandType type, String remainder) {
-        int index;
-        try {
-            index = Integer.parseInt(remainder.trim());
-        } catch (NumberFormatException e) {
-            return new Command(CommandType.INVALID, remainder);
+    private static Command parseTodoCommand(String remainder) {
+        Command invalidCommand = Validator.validateTodoCommand(remainder);
+        if (invalidCommand.isInvalid()) {
+            return invalidCommand;
         }
+        return new Command(CommandType.TODO, remainder);
+    }
+
+    private static Command parseMarkCommand(CommandType type, String remainder) {
+        Command invalidCommand = Validator.validateMarkCommand(remainder);
+        if (invalidCommand.isInvalid()) {
+            return invalidCommand;
+        }
+        int index = Integer.parseInt(remainder.trim());
 
         Command cmd = new Command(type, "");
         cmd.setTaskIndex(index - 1);
@@ -47,7 +55,7 @@ public class Parser {
         int byIndex = remainder.indexOf("/by");
 
         Command invalidCommand = Validator.validateDeadlineIndexes(byIndex, remainder);
-        if (invalidCommand.getType() == CommandType.INVALID) {
+        if (invalidCommand.isInvalid()) {
             return invalidCommand;
         }
 
@@ -64,7 +72,7 @@ public class Parser {
         int toIndex = remainder.indexOf("/to");
 
         Command invalidCommand = Validator.validateEventIndexes(fromIndex, toIndex, remainder);
-        if (invalidCommand.getType() == CommandType.INVALID) {
+        if (invalidCommand.isInvalid()) {
             return invalidCommand;
         }
 
