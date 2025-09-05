@@ -13,6 +13,6 @@ public class Event extends Task {
         return "[T]" +
                 "[" + this.getStatusIcon() + "] " +
                 this.getDescription() +
-                "(from: " + this.start + " to: " + this.end + ")";
+                " (from: " + this.start + " to: " + this.end + ")";
     }
 }

@@ -45,8 +45,10 @@ public class Parser {
 
     private static Command parseDeadlineCommand(String remainder) {
         int byIndex = remainder.indexOf("/by");
-        if (byIndex == -1) {
-            return new Command(CommandType.INVALID, remainder);
+
+        Command invalidCommand = Validator.validateDeadlineIndexes(byIndex, remainder);
+        if (invalidCommand.getType() == CommandType.INVALID) {
+            return invalidCommand;
         }
 
         String description = remainder.substring(0, byIndex).trim();

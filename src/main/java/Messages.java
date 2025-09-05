@@ -9,5 +9,8 @@ public class Messages {
     static String INVALID_TODO_NAME = "Your todo is missing a name. Please ensure there is something after todo";
 
     static String INVALID_DEADLINE_BY = "Your deadline is missing a due date/time. Please ensure there is something after the /by";
+    static String INVALID_DEADLINE_MISSING_BY_PARAMETER = "Your /by parameter is missing. Please add the parameter /by";
     static String INVALID_DEADLINE_NAME = "Your deadline is missing a name. Please ensure there is something after deadline but before /by";
+
+    static String INVALID_KEYWORD = "Your task type is invalid.";
 }

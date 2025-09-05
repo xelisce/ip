@@ -20,4 +20,17 @@ public class Validator {
         }
         return new Command(CommandType.VALID, remainder);
     }
+
+    public static Command validateDeadlineIndexes(int byIndex, String remainder) {
+        if (byIndex == -1) {
+            return new Command(CommandType.INVALID, Messages.INVALID_DEADLINE_BY);
+        }
+        if (byIndex <= 0) {
+            return new Command(CommandType.INVALID, Messages.INVALID_DEADLINE_NAME);
+        }
+        if (byIndex + 4 >= remainder.trim().length()) {
+            return new Command(CommandType.INVALID, Messages.INVALID_DEADLINE_BY);
+        }
+        return new Command(CommandType.VALID, remainder);
+    }
 }

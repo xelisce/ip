@@ -11,6 +11,6 @@ public class Deadline extends Task {
         return "[D]" +
                 "[" + this.getStatusIcon() + "] " +
                 this.getDescription() +
-                "(by: " + this.deadline + ")";
+                " (by: " + this.deadline + ")";
     }
 }
