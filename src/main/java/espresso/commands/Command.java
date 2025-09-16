@@ -1,3 +1,5 @@
+package espresso.commands;
+
 public class Command {
     private final CommandType type;
     private final String description;

@@ -1,3 +1,5 @@
+package espresso.tasks;
+
 public class Event extends Task {
     private final String start;
     private final String end;
@@ -10,7 +12,7 @@ public class Event extends Task {
 
     @Override
     public String getStatusLine() {
-        return "[T]" +
+        return "[E]" +
                 "[" + this.getStatusIcon() + "] " +
                 this.getDescription() +
                 " (from: " + this.start + " to: " + this.end + ")";

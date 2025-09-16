@@ -1,3 +1,8 @@
+package espresso.inputchecker;
+
+import espresso.commands.Command;
+import espresso.commands.CommandType;
+
 public class Validator {
     public static Command validateMarkCommand(String remainder) {
         // Check if task index was given in the command

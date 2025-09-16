@@ -1,3 +1,5 @@
+package espresso.ui;
+
 public class Display {
     private static final String DIVIDER = "\t____________________________________________________________";
     private static final String LOGO = """
