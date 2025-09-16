@@ -4,16 +4,16 @@ import espresso.commands.Command;
 import espresso.commands.CommandType;
 
 public class Validator {
-    public static Command validateMarkCommand(String remainder) {
+    public static Command validateIndex(CommandType command, String remainder) {
         // Check if task index was given in the command
         if (remainder.trim().isEmpty()) {
-            return new Command(CommandType.INVALID, Messages.INVALID_MARK_MISSING_INDEX);
+            return new Command(CommandType.INVALID, Messages.INVALID_MISSING_INDEX);
         }
         // Check if task index is an integer
         try {
             Integer.parseInt(remainder.trim());
         } catch (NumberFormatException e) {
-            return new Command(CommandType.INVALID, Messages.INVALID_MARK_INDEX);
+            return new Command(CommandType.INVALID, Messages.INVALID_INDEX);
         }
         return new Command(CommandType.VALID, remainder);
     }

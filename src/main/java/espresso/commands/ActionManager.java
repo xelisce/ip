@@ -10,7 +10,7 @@ public class ActionManager {
 
     public static void mainLoop() {
         Scanner in = new Scanner(System.in);
-        String userInput; // how do i get rid of this line
+        String userInput;
         while (true) {
             userInput = in.nextLine();
             if (userInput.equals("bye")) {
@@ -32,6 +32,9 @@ public class ActionManager {
             break;
         case UNMARK:
             TaskManager.markTask(false, command.getTaskIndex());
+            break;
+        case DELETE:
+            TaskManager.deleteTask(command.getTaskIndex());
             break;
         case TODO:
             TaskManager.addTodo(command.getDescription());
