@@ -37,4 +37,14 @@ public abstract class Task {
     public String getStatusLine() {
          return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
+
+    protected abstract String getType();
+
+    public String getFileLine() {
+        String done = this.getIsDone() ? "1" : "0";
+        return this.getType() + " | "
+                + done + " | "
+                + this.getDescription();
+    }
+
 }

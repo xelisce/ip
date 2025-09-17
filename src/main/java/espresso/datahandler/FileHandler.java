@@ -7,7 +7,7 @@ import espresso.ui.Display;
 
 public class FileHandler {
     private static final String FILE_PATH = "espresso.txt";
-    private static final String ERROR_CREATE_NEW_FILE_MESSAGE = "An error occurred in creating a new file.";
+    private static final String ERROR_CREATE_NEW_FILE_MESSAGE = "An error occurred in creating/finding the data file.";
 
     private static File file = new File(FILE_PATH);
     private static String[] fileContents;
@@ -18,6 +18,20 @@ public class FileHandler {
                 Display.printMessage(ERROR_CREATE_NEW_FILE_MESSAGE);
             };
         } catch (IOException e) {
+            Display.printMessage(ERROR_CREATE_NEW_FILE_MESSAGE);
+        }
+    }
+
+    public static void addTask(String taskLine) {
+        boolean success = FilePrinter.writeLine(FILE_PATH, taskLine + "\n", true);
+        if (!success) {
+            Display.printMessage(ERROR_CREATE_NEW_FILE_MESSAGE);
+        }
+    }
+
+    public static void addTasks(String[] taskLines) {
+        boolean success = FilePrinter.writeLines(FILE_PATH, taskLines, true);
+        if (!success) {
             Display.printMessage(ERROR_CREATE_NEW_FILE_MESSAGE);
         }
     }

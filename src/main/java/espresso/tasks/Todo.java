@@ -11,6 +11,10 @@ public class Todo extends Task {
         super.setIsDone(marked);
     }
 
+    public String getType() {
+        return "T";
+    }
+
     @Override
     public String getStatusLine() {
         return "[T]" +

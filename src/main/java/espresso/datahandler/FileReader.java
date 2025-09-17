@@ -14,7 +14,10 @@ public class FileReader {
         Scanner s = new Scanner(file);
         ArrayList<String> list = new ArrayList<>();
         while (s.hasNext()) {
-            list.add(s.nextLine());
+            String line = s.nextLine();
+            if (!line.isEmpty()) {
+                list.add(line);
+            }
         }
         return list.toArray(new String[0]);
     }

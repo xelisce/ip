@@ -15,10 +15,20 @@ public class Deadline extends Task {
     }
 
     @Override
+    protected String getType() {
+        return "D";
+    }
+
+    @Override
     public String getStatusLine() {
         return "[D]" +
                 "[" + this.getStatusIcon() + "] " +
                 this.getDescription() +
                 " (by: " + this.deadline + ")";
+    }
+
+    @Override
+    public String getFileLine() {
+        return super.getFileLine() + " | " + this.deadline;
     }
 }

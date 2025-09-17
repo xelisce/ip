@@ -6,4 +6,9 @@ public class InvalidTask extends Task {
         super("");
         setValid(false);
     }
+
+    @Override
+    protected String getType() {
+        return "";
+    }
 }

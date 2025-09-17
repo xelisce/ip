@@ -10,6 +10,7 @@ public class TaskManager {
     public static void addTask(Task t) {
         taskList[taskListSize] = t;
         taskListSize++;
+        FileHandler.addTask(t.getFileLine());
         Display.printMessage("Got it. I've added this task:",
                 "   " + t.getStatusLine(),
                 "Now you have " + taskListSize + " tasks in the list.");

@@ -18,10 +18,20 @@ public class Event extends Task {
     }
 
     @Override
+    protected String getType() {
+        return "E";
+    }
+
+    @Override
     public String getStatusLine() {
         return "[E]" +
                 "[" + this.getStatusIcon() + "] " +
                 this.getDescription() +
                 " (from: " + this.start + " to: " + this.end + ")";
+    }
+
+    @Override
+    public String getFileLine() {
+        return super.getFileLine() + " | " + this.start + " | " + this.end;
     }
 }
