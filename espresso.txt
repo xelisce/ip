@@ -1,4 +1,5 @@
-T | 0 | borrow book
-T | 0 | hello
-E | 0 | yes | no | maybe
-D | 0 | rolly | 2pm
+T | 1 | borrow book
+null
+E | 1 | yes | no  |  maybe
+null
+T | 1 | hello

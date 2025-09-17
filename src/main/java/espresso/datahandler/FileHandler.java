@@ -22,15 +22,15 @@ public class FileHandler {
         }
     }
 
-    public static void addTask(String taskLine) {
-        boolean success = FilePrinter.writeLine(FILE_PATH, taskLine + "\n", true);
+    public static void writeTask(String taskLine, boolean append) {
+        boolean success = FilePrinter.writeLine(FILE_PATH, taskLine + "\n", append);
         if (!success) {
             Display.printMessage(ERROR_CREATE_NEW_FILE_MESSAGE);
         }
     }
 
-    public static void addTasks(String[] taskLines) {
-        boolean success = FilePrinter.writeLines(FILE_PATH, taskLines, true);
+    public static void rewriteFile(String content) {
+        boolean success = FilePrinter.rewriteLines(FILE_PATH, content);
         if (!success) {
             Display.printMessage(ERROR_CREATE_NEW_FILE_MESSAGE);
         }

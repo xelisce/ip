@@ -10,13 +10,13 @@ public class TaskManager {
     public static void addTask(Task t) {
         taskList[taskListSize] = t;
         taskListSize++;
-        FileHandler.addTask(t.getFileLine());
+        FileHandler.writeTask(t.getFileLine(), true);
         Display.printMessage("Got it. I've added this task:",
                 "   " + t.getStatusLine(),
                 "Now you have " + taskListSize + " tasks in the list.");
     }
 
-    public static int addTasks(Task[] tasks) {
+    public static int addTasksFromFile(Task[] tasks) {
         int invalidTaskCounter = 0;
         for (Task task : tasks) {
             if (!task.isValid()) {
@@ -31,7 +31,7 @@ public class TaskManager {
 
     public static String[] loadTasksFromFile() {
         Task[] tasks = FileHandler.loadData();
-        int invalidTaskCount = addTasks(tasks);
+        int invalidTaskCount = addTasksFromFile(tasks);
         String[] message =  new String[2];
         message[0] = "I've loaded files from file system!";
         if (invalidTaskCount > 0) {
@@ -41,6 +41,16 @@ public class TaskManager {
             message[1] = "You have " + taskListSize + " tasks in the list.";
         }
         return message;
+    }
+
+    public static void writeTasksToFile() {
+        String[] toWrite = new String[taskListSize];
+        for (int i = 0; i < taskListSize; i ++) {
+            toWrite[i] = taskList[i].getFileLine();
+            i++;
+        }
+        String fileContent = String.join("\n", toWrite);
+        FileHandler.rewriteFile(fileContent);
     }
 
     public static void printTasks() {
@@ -57,6 +67,7 @@ public class TaskManager {
         Task task = taskList[index];
         task.setIsDone(markDone);
         String done = markDone ? "done" : "undone";
+        writeTasksToFile();
         Display.printMessage("Nice! I've marked this task as " + done,
                 "   " + task.getStatusLine());
     }

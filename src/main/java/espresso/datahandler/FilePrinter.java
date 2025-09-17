@@ -27,11 +27,7 @@ public class FilePrinter {
         }
     }
 
-    public static boolean writeLines(String filePath, String[] lines, boolean append) {
-        boolean success = true;
-        for (String  line : lines) {
-            success = success && writeLine(filePath, line, append);
-        }
-        return success;
+    public static boolean rewriteLines(String filePath, String lines) {
+        return writeLine(filePath, lines, false);
     }
 }
