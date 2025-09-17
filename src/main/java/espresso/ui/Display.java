@@ -17,9 +17,12 @@ public class Display {
         System.out.println("\n" + LOGO);
     }
 
-    public static void printHelloMessage() {
+    public static void printHelloMessage(String[] loadTaskMessage) {
         printBanner();
-        printMessage("Hello! I'm ESPRESSO", "What can I do for you today?");
+        printMessage("Hello! I'm ESPRESSO",
+                "What can I do for you today?",
+                loadTaskMessage[0],
+                loadTaskMessage[1]);
     }
 
     public static void printByeMessage() {

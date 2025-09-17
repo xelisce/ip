@@ -1,5 +1,6 @@
 package espresso.tasks;
 
+import espresso.datahandler.FileHandler;
 import espresso.ui.Display;
 
 public class TaskManager {
@@ -12,6 +13,33 @@ public class TaskManager {
         Display.printMessage("Got it. I've added this task:",
                 "   " + t.getStatusLine(),
                 "Now you have " + taskListSize + " tasks in the list.");
+    }
+
+    public static int addTasks(Task[] tasks) {
+        int invalidTaskCounter = 0;
+        for (Task task : tasks) {
+            if (!task.isValid()) {
+                invalidTaskCounter++;
+                continue;
+            }
+            taskList[taskListSize] = task;
+            taskListSize++;
+        }
+        return invalidTaskCounter;
+    }
+
+    public static String[] loadTasksFromFile() {
+        Task[] tasks = FileHandler.loadData();
+        int invalidTaskCount = addTasks(tasks);
+        String[] message =  new String[2];
+        message[0] = "I've loaded files from file system!";
+        if (invalidTaskCount > 0) {
+            message[1] = "You have " + invalidTaskCount +
+                    " invalid tasks in the list that were not added.";
+        } else {
+            message[1] = "You have " + taskListSize + " tasks in the list.";
+        }
+        return message;
     }
 
     public static void printTasks() {

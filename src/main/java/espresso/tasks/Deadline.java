@@ -8,6 +8,12 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
+    public Deadline(String description, String deadline, boolean marked) {
+        super(description);
+        super.setIsDone(marked);
+        this.deadline = deadline;
+    }
+
     @Override
     public String getStatusLine() {
         return "[D]" +

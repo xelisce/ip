@@ -10,6 +10,13 @@ public class Event extends Task {
         this.end = end;
     }
 
+    public Event(String description, String start, String end, boolean marked) {
+        super(description);
+        super.setIsDone(marked);
+        this.start = start;
+        this.end = end;
+    }
+
     @Override
     public String getStatusLine() {
         return "[E]" +

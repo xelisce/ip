@@ -3,6 +3,7 @@ package espresso.tasks;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    public boolean isValid = true;
 
     Task(String description) {
         this.description = description;
@@ -19,6 +20,14 @@ public abstract class Task {
 
     public boolean getIsDone() {
         return this.isDone;
+    }
+
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
     }
 
     protected String getStatusIcon() {
