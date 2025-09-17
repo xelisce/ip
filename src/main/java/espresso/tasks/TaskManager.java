@@ -74,6 +74,7 @@ public class TaskManager {
     public static void deleteTask(int index) {
         Task task = taskList.get(index);
         taskList.remove(index);
+        writeTasksToFile();
         Display.printMessage("Noted. I have removed this task:",
                 "   " + task.getStatusLine(),
                 "Now you have " + taskList.size() + " tasks in the list.");

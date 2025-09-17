@@ -1,5 +1,0 @@
-T | 1 | borrow book
-null
-E | 1 | yes | no  |  maybe
-null
-T | 1 | hello
