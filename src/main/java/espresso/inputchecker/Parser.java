@@ -15,22 +15,16 @@ public class Parser {
             remainder = userInput.substring(spaceIndex + 1);
         }
 
-        switch (keyword) {
-        case "list":
-            return new Command(CommandType.LIST, remainder);
-        case "mark":
-            return parseMarkCommand(CommandType.MARK, remainder);
-        case "unmark":
-            return parseMarkCommand(CommandType.UNMARK, remainder);
-        case "todo":
-            return parseTodoCommand(remainder);
-        case "deadline":
-            return parseDeadlineCommand(remainder);
-        case "event":
-            return parseEventCommand(remainder);
-        default:
-            return new Command(CommandType.INVALID, Messages.INVALID_KEYWORD);
-        }
+        return switch (keyword) {
+            case "list" -> new Command(CommandType.LIST, remainder);
+            case "mark" -> parseIndexCommand(CommandType.MARK, remainder);
+            case "unmark" -> parseIndexCommand(CommandType.UNMARK, remainder);
+            case "delete" -> parseIndexCommand(CommandType.DELETE, remainder);
+            case "todo" -> parseTodoCommand(remainder);
+            case "deadline" -> parseDeadlineCommand(remainder);
+            case "event" -> parseEventCommand(remainder);
+            default -> new Command(CommandType.INVALID, Messages.INVALID_KEYWORD);
+        };
     }
 
     private static Command parseTodoCommand(String remainder) {
@@ -41,8 +35,8 @@ public class Parser {
         return new Command(CommandType.TODO, remainder);
     }
 
-    private static Command parseMarkCommand(CommandType type, String remainder) {
-        Command invalidCommand = Validator.validateMarkCommand(remainder);
+    private static Command parseIndexCommand(CommandType type, String remainder) {
+        Command invalidCommand = Validator.validateIndex(type, remainder);
         if (invalidCommand.isInvalid()) {
             return invalidCommand;
         }

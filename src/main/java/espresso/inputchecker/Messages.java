@@ -14,8 +14,8 @@ public class Messages {
     static String INVALID_DEADLINE_MISSING_BY_PARAMETER = "Your /by parameter is missing. Please add the parameter /by";
     static String INVALID_DEADLINE_NAME = "Your deadline is missing a name. Please ensure there is something after deadline but before /by";
 
-    static String INVALID_MARK_INDEX = "Your task index is not a valid number. Please enter an integer";
-    static String INVALID_MARK_MISSING_INDEX = "Your task index is missing. Please enter an integer";
+    static String INVALID_INDEX = "Your task index is not a valid number. Please enter an integer";
+    static String INVALID_MISSING_INDEX = "Your task index is missing. Please enter an integer";
 
     static String INVALID_KEYWORD = "Your task type is invalid.";
 }
