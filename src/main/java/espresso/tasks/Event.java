@@ -10,11 +10,28 @@ public class Event extends Task {
         this.end = end;
     }
 
+    public Event(String description, String start, String end, boolean marked) {
+        super(description);
+        super.setIsDone(marked);
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    protected String getType() {
+        return "E";
+    }
+
     @Override
     public String getStatusLine() {
         return "[E]" +
                 "[" + this.getStatusIcon() + "] " +
                 this.getDescription() +
                 " (from: " + this.start + " to: " + this.end + ")";
+    }
+
+    @Override
+    public String getFileLine() {
+        return super.getFileLine() + " | " + this.start + " | " + this.end;
     }
 }

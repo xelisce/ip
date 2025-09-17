@@ -6,6 +6,15 @@ public class Todo extends Task {
         super(description);
     }
 
+    public Todo(String description, boolean marked) {
+        super(description);
+        super.setIsDone(marked);
+    }
+
+    public String getType() {
+        return "T";
+    }
+
     @Override
     public String getStatusLine() {
         return "[T]" +

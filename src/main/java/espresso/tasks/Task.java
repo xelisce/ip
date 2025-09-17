@@ -3,6 +3,7 @@ package espresso.tasks;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    public boolean isValid = true;
 
     Task(String description) {
         this.description = description;
@@ -21,6 +22,14 @@ public abstract class Task {
         return this.isDone;
     }
 
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public void setValid(boolean valid) {
+        isValid = valid;
+    }
+
     protected String getStatusIcon() {
         return (this.isDone ? "X" : " "); // mark done task with X
     }
@@ -28,4 +37,14 @@ public abstract class Task {
     public String getStatusLine() {
          return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
+
+    protected abstract String getType();
+
+    public String getFileLine() {
+        String done = this.getIsDone() ? "1" : "0";
+        return this.getType() + " | "
+                + done + " | "
+                + this.getDescription();
+    }
+
 }
