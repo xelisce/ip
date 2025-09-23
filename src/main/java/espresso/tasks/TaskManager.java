@@ -1,7 +1,12 @@
 package espresso.tasks;
 
+import static java.util.stream.Collectors.toList;
+
 import espresso.datahandler.FileHandler;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import espresso.ui.Display;
 
@@ -93,5 +98,24 @@ public class TaskManager {
     public static void addEvent(String description, String start, String end) {
         Event task = new Event(description, start, end);
         addTask(task);
+    }
+
+    public static List<Task> filterTasks(String... keywords) {
+        return taskList.parallelStream()
+                .filter(task -> Arrays.stream(keywords)
+                        .anyMatch(keyword -> task.getDescription().contains(keyword)))
+                .toList();
+    }
+
+    public static void findTasks(String... keywords) {
+        List<Task> matchedTasks = filterTasks(keywords);
+
+        String[] messageLines = new String[matchedTasks.size() + 1];
+        messageLines[0] = "I've found " + matchedTasks.size() + " tasks that match your query.";
+        for (int i = 0; i < matchedTasks.size(); i++) {
+            messageLines[i + 1] = matchedTasks.get(i).getStatusLine();
+        }
+
+        Display.printMessage(messageLines);
     }
 }

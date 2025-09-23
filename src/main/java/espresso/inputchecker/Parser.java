@@ -23,6 +23,7 @@ public class Parser {
             case "todo" -> parseTodoCommand(remainder);
             case "deadline" -> parseDeadlineCommand(remainder);
             case "event" -> parseEventCommand(remainder);
+            case "find" -> parseFindCommand(remainder);
             default -> new Command(CommandType.INVALID, Messages.INVALID_KEYWORD);
         };
     }
@@ -79,6 +80,16 @@ public class Parser {
         Command cmd = new Command(CommandType.EVENT, description);
         cmd.setEventStart(from);
         cmd.setEventEnd(to);
+        return cmd;
+    }
+
+    private static Command parseFindCommand(String remainder) {
+        Command cmd = new Command(CommandType.FIND, remainder);
+        String[] keywords = remainder.strip().split(" ");
+        if (keywords.length == 0) {
+            return new Command(CommandType.INVALID, Messages.INVALID_FIND_MISSING_KEYWORD);
+        }
+        cmd.setKeywords(keywords);
         return cmd;
     }
 }

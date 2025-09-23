@@ -18,4 +18,6 @@ public class Messages {
     static String INVALID_MISSING_INDEX = "Your task index is missing. Please enter an integer";
 
     static String INVALID_KEYWORD = "Your task type is invalid.";
+
+    static String INVALID_FIND_MISSING_KEYWORD = "Your task description is missing. Please add something after the word 'find'";
 }

@@ -45,6 +45,9 @@ public class ActionManager {
         case EVENT:
             TaskManager.addEvent(command.getDescription(), command.getEventStart(), command.getEventEnd());
             break;
+        case FIND:
+            TaskManager.findTasks(command.getKeywords());
+            break;
         case INVALID:
         default:
             Display.printInvalidCommand(command.getDescription());
