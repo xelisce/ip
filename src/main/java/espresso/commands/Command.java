@@ -7,6 +7,7 @@ public class Command {
     private String deadline = "";
     private String eventStart = "";
     private String eventEnd = "";
+    private String[] keywords;
     private boolean isValidArguments = false;
 
     public Command(CommandType type, String description) {
@@ -53,6 +54,10 @@ public class Command {
     public void setEventEnd(String end) {
         this.eventEnd = end;
     }
+
+    public String[] getKeywords() { return this.keywords; }
+
+    public void setKeywords(String[] keywords) { this.keywords = keywords; }
 
     public boolean isInvalid() {
         return this.getType() == CommandType.INVALID;
