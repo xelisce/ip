@@ -33,5 +33,8 @@ public enum CommandType {
     INVALID,
 
     /** Represents a valid command (used internally). */
-    VALID
+    VALID,
+
+    /** Displays a help tool */
+    HELP
 }

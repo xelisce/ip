@@ -65,6 +65,9 @@ public class ActionManager {
         case FIND:
             TaskManager.findTasks(command.getKeywords());
             break;
+        case HELP:
+            Display.printHelpMessage();
+            break;
         case INVALID:
         default:
             Display.printInvalidCommand(command.getDescription());
