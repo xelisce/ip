@@ -5,7 +5,18 @@ import espresso.tasks.InvalidTask;
 import espresso.tasks.Task;
 import espresso.tasks.Todo;
 
+/**
+ * Parses serialized task lines from a file into structured {@code Task} objects.
+ * Supports multiple task types including {@code Todo}, {@code Deadline}, and {@code Event}.
+ */
 public class FileParser {
+
+    /**
+     * Converts an array of serialized task lines into an array of {@code Task} objects.
+     *
+     * @param lines each line represents a task in serialized format
+     * @return array of parsed {@code Task} objects
+     */
     public static Task[] parseTasks(String[] lines) {
         Task[] tasks = new Task[lines.length];
         for (int i = 0; i < lines.length; i++) {
@@ -14,6 +25,13 @@ public class FileParser {
         return tasks;
     }
 
+    /**
+     * Parses a single line of task data into a {@code ParsedLine} object.
+     * Handles splitting, trimming, and extracting optional metadata.
+     *
+     * @param line raw task line from file
+     * @return structured {@code ParsedLine} containing task components
+     */
     private static ParsedLine parseLine(String line) {
         String[] lineParts = line.split("\\|");
         if (lineParts.length < 3) {
@@ -32,6 +50,13 @@ public class FileParser {
         return new ParsedLine(taskType, marked, description, remainder);
     }
 
+    /**
+     * Converts a parsed line into a specific {@code Task} subtype.
+     * Returns {@code InvalidTask} if the line is malformed or unsupported.
+     *
+     * @param line raw task line from file
+     * @return a {@code Task} object representing the parsed data
+     */
     private static Task parseTask(String line) {
         ParsedLine parsedLine = parseLine(line);
         if (!parsedLine.isFullyValid()) {
