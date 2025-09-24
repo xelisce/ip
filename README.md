@@ -27,12 +27,12 @@ Espresso is a lightweight command-line task manager for tracking todos, deadline
 ## Quick Start
 
 1. Ensure you have **Java 17 or above** installed.
-2. Download the latest `espresso.jar` file from [here](https://github.com/xelisce/ip/releases).
+2. Download the latest `ip.jar` file from [here](https://github.com/xelisce/ip/releases).
 3. Place it in your desired working directory.
 4. Open a terminal, and navigate to that directory with `cd` and run:
 
 ```bash
-java -jar espresso.jar
+java -jar ip.jar
 ```
 
 5. Type commands directly into the console and press Enter to execute.
