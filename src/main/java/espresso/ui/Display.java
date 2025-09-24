@@ -73,4 +73,8 @@ public class Display {
         }
         System.out.println(DIVIDER);
     }
+
+    public static void printHelpMessage() {
+        printMessage("Refer to https://xelisce.github.io/ip/ for more information on how to use commands.");
+    }
 }

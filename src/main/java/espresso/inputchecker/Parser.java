@@ -35,6 +35,7 @@ public class Parser {
             case "deadline" -> parseDeadlineCommand(remainder);
             case "event" -> parseEventCommand(remainder);
             case "find" -> parseFindCommand(remainder);
+            case "help" -> new Command(CommandType.HELP, "");
             default -> new Command(CommandType.INVALID, Messages.INVALID_KEYWORD);
         };
     }
